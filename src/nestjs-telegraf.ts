@@ -4,14 +4,7 @@ import { Command, TelegrafModule, Update, Ctx, On } from "nestjs-telegraf";
 import { NestFactory } from "@nestjs/core";
 
 @Update()
-class Updates {
-  @Command("test")
-  test(@Ctx() ctx: any) {
-    const msg = "Test command handled";
-    ctx.reply(msg);
-    console.log(msg);
-  }
-
+class OnMessageUpdate {
   @On("message")
   message(@Ctx() ctx: any) {
     const msg = "On message handled.";
@@ -21,12 +14,33 @@ class Updates {
 }
 
 @Module({
+  providers: [OnMessageUpdate],
+})
+class ExtModule {}
+
+@Update()
+class CommandUpdate {
+  @Command("test")
+  test(@Ctx() ctx: any) {
+    const msg = "Test command handled";
+    ctx.reply(msg);
+    console.log(msg);
+  }
+}
+
+@Module({
+  providers: [CommandUpdate],
+})
+class ExtModule2 {}
+
+@Module({
   imports: [
     TelegrafModule.forRoot({
       token: process.env.TOKEN as string,
     }),
+    ExtModule,
+    ExtModule2,
   ],
-  providers: [Updates],
 })
 class AppModule {}
 
