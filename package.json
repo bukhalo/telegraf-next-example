@@ -1,0 +1,28 @@
+{
+  "name": "telegraf-next-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:telegraf": "ts-node-dev ./src/telegraf.ts",
+    "start:nestjs-telegraf": "ts-node-dev ./src/nestjs-telegraf.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^14.14.31",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "@nestjs/common": "^7.6.13",
+    "@nestjs/core": "^7.6.13",
+    "dotenv": "^8.2.0",
+    "lodash": "^4.17.21",
+    "nestjs-telegraf": "^2.2.1",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.6.6",
+    "telegraf": "^4.1.2"
+  }
+}
